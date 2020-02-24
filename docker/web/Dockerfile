@@ -5,26 +5,27 @@ FROM ruby:2.6.3
 # 変数の表示
 ARG BASEDIR
 
+##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
+ENV APP_ROOT /${BASEDIR} 
+WORKDIR $APP_ROOT
+
+# 作業ディレクトリの作成、設定
+COPY ./${BASEDIR}/Gemfile* /$BASEDIR/
+
+##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
+ENV APP_ROOT /${BASEDIR} 
+WORKDIR $APP_ROOT
+
 # 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
 RUN apt-get update -qq && \
   apt-get install -y build-essential \ 
   libpq-dev \        
   nodejs \
-  npm 
+  npm && \
 
-# npmのインストール
-RUN npm install
+  # npmのインストール
+  npm install && \
 
-# 作業ディレクトリの作成、設定
-RUN mkdir $BASEDIR
-##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
-ENV APP_ROOT /${BASEDIR} 
-WORKDIR $APP_ROOT
-
-# ホスト側（ローカル）のGemfileを追加する（ローカルのGemfileは【３】で作成）
-ADD ./${BASEDIR}/Gemfile $APP_ROOT/Gemfile
-ADD ./${BASEDIR}/Gemfile.lock $APP_ROOT/Gemfile.lock
-
-# Gemfileのbundle install
-RUN gem install bundler:2.1.4
-RUN bundle install
+  # Gemfileのbundle install
+  gem install bundler:2.1.4 && \
+  bundle install
