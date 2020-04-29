@@ -1,6 +1,6 @@
 # コピペでOK, app_nameもそのままでOK
 # 19.01.20現在最新安定版のイメージを取得
-FROM ruby:2.6.3
+FROM ruby:2.6.5
 
 # 変数の表示
 ARG BASEDIR
@@ -17,7 +17,8 @@ RUN apt-get update -qq && \
   apt-get install -y build-essential \ 
   libpq-dev \        
   nodejs \
-  npm && \
+  npm \
+  postgresql-client && \
 
   # npmのインストール
   npm install && \
