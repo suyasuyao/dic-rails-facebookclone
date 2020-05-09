@@ -1,5 +1,5 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
+  get 'sessions/new'
+  resources :sessions, only: %i[new create destroy]
   resources :users, only: %i[new create show]
 end

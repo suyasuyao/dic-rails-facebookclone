@@ -19,17 +19,17 @@ AllCops:
     - !ruby/regexp /old_and_unused\.rb$/
 
 # 日本語でのコメントを許可
-AsciiComments:
+Style/AsciiComments:
   Enabled: false
 
 # クラスのコメント必須を無視
-Documentation:
+Style/Documentation:
   Enabled: false
 
 # モジュール名::クラス名の定義を許可
-ClassAndModuleChildren:
+Style/ClassAndModuleChildren:
   Enabled: false
 
 # 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
 Style/FrozenStringLiteralComment:
-  Enabled: true
+  Enabled: false
