@@ -45,6 +45,10 @@ class PicturesController < ApplicationController
     end
   end
 
+  def confirm
+    @picture = current_user.pictures.build(picture_params)
+  end
+
   # DELETE /pictures/1
   # DELETE /pictures/1.json
   def destroy

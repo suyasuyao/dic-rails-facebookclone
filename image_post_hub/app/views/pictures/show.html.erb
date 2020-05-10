@@ -2,12 +2,12 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @picture.title if !@picture.title %>
+  <%= @picture.title if !@picture.title.nil? %>
 </p>
 
 <p>
   <strong>Content:</strong>
-  <%= @picture.content if !@picture.content %>
+  <%= @picture.content if !@picture.content.nil? %>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @picture.user.name if !@picture.user.name %>
+  <%= @picture.user.name if !@picture.user.name.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> |
