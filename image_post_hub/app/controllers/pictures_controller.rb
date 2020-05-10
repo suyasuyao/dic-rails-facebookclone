@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_picture, only: %i[show edit update destroy]
 
   # GET /pictures
   # GET /pictures.json
@@ -9,8 +9,7 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1
   # GET /pictures/1.json
-  def show
-  end
+  def show; end
 
   # GET /pictures/new
   def new
@@ -18,13 +17,12 @@ class PicturesController < ApplicationController
   end
 
   # GET /pictures/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new(picture_params)
+    @picture = current_user.pictures.build(picture_params)
 
     respond_to do |format|
       if @picture.save
@@ -62,13 +60,14 @@ class PicturesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_picture
-      @picture = Picture.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def picture_params
-      params.require(:picture).permit(:title, :content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_picture
+    @picture = Picture.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def picture_params
+    params.require(:picture).permit(:title, :content)
+  end
 end
