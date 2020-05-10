@@ -26,4 +26,4 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/public/uploads/picture/picture_file/2/dic-kadaidb.png
+/public/uploads/*
