@@ -18,7 +18,8 @@ RUN apt-get update -qq && \
   libpq-dev \        
   nodejs \
   npm \
-  postgresql-client && \
+  postgresql-client \ 
+  imagemagick && \
 
   # npmのインストール
   npm install && \

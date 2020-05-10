@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_004112) do
   create_table "pictures", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.text "picture_file"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
